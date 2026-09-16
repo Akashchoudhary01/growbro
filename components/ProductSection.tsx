@@ -1,71 +1,78 @@
-'use client';
-
-import { useState } from 'react';
+import React from 'react'
 import Image from 'next/image';
-import { Play } from 'lucide-react';
 
-export default function ProductSection() {
-  const [isPlaying, setIsPlaying] = useState(false);
 
-  return (
-    <section className="py-12 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Product Preview / Video Container */}
-        <div className="relative rounded-2xl overflow-hidden border border-gray-200 shadow-2xl bg-gray-50 group">
-          {!isPlaying ? (
-            <div className="relative w-full aspect-[16/9]">
-              <Image
-                src="/product-hero.png" // Replace with image path or keep placeholder
-                alt="Growbro Product Demo"
-                fill
-                priority
-                className="object-cover object-top"
-              />
+// Brand Logos Data
+const BRAND_LOGOS = [
+  { name: 'Brand 1', src: 'https://via.placeholder.com/120x40?text=Logo+1' },
+  { name: 'Brand 2', src: 'https://via.placeholder.com/120x40?text=Logo+2' },
+  { name: 'Brand 3', src: 'https://via.placeholder.com/120x40?text=Logo+3' },
+  { name: 'Brand 4', src: 'https://via.placeholder.com/120x40?text=Logo+4' },
+  { name: 'Brand 5', src: 'https://via.placeholder.com/120x40?text=Logo+5' },
+];
 
-              {/* Video Play Overlay Button */}
-              <div className="absolute inset-0 bg-black/20 flex items-center justify-center transition-all group-hover:bg-black/30">
-                <button
-                  onClick={() => setIsPlaying(true)}
-                  className="w-16 h-16 sm:w-20 sm:h-20 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center shadow-lg transition-transform transform group-hover:scale-110"
-                  aria-label="Play Product Video"
-                >
-                  <Play className="w-8 h-8 ml-1 fill-white" />
-                </button>
-              </div>
-            </div>
-          ) : (
-            /* Embedded Video Container */
-            <div className="relative w-full aspect-[16/9]">
-              <iframe
-                className="w-full h-full"
-                // src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1" 
-             src="https://www.youtube.com/embed/Qn8aYSQe-_4?autoplay=1"
-                title="Growbro Product Demo Video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-          )}
-        </div>
+// 1. Hero Showcase Image Component
+const HeroShowcase = () => (
+  <div className="relative max-w-5xl mx-auto my-8 px-4 flex justify-center">
+    <Image
+      src="/hero.png"
+        width={1600}
+  height={900}
+      alt="Product Showcase"
+      className="w-full h-auto object-contain rounded-xl shadow-lg"
+    />
+  </div>
+);
 
-        {/* Trusted Growing Businesses / Logo Cloud Section */}
-        <div className="mt-16 text-center">
-          <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-8">
-            Trusted by fast-growing businesses
-          </p>
+// 2. Social Proof & Brand Logos Component
+const SocialProof = () => (
+  <section className="py-12 bg-white text-center">
+    <div className="max-w-4xl mx-auto px-4">
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
+        Founders & Marketers Love us
+      </h2>
+      <p className="mt-2 text-sm md:text-base text-gray-500 font-medium">
+        Trusted by 210,000+ Businesses across 80+ Countries.
+      </p>
 
-          {/* Logo Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 items-center justify-items-center opacity-70 grayscale hover:grayscale-0 transition-all">
-            <div className="h-8 flex items-center justify-center font-bold text-gray-400 text-xl">Shopify</div>
-            <div className="h-8 flex items-center justify-center font-bold text-gray-400 text-xl">Razorpay</div>
-            <div className="h-8 flex items-center justify-center font-bold text-gray-400 text-xl">Meta</div>
-            <div className="h-8 flex items-center justify-center font-bold text-gray-400 text-xl">WooCommerce</div>
-            <div className="h-8 flex items-center justify-center font-bold text-gray-400 text-xl col-span-2 sm:col-span-1">Stripe</div>
-          </div>
-        </div>
-
+      {/* Brand Logos Grid */}
+      <div className="mt-8 flex flex-wrap items-center justify-center gap-8 md:gap-12 opacity-80 grayscale transition duration-300 hover:grayscale-0">
+        {BRAND_LOGOS.map((brand, index) => (
+          <Image
+            key={index}
+            src={brand.src}
+            alt={brand.name}
+            className="h-8 md:h-10 object-contain"
+          />
+        ))}
       </div>
-    </section>
+    </div>
+  </section>
+);
+
+// 3. Demo Video Component
+const DemoVideo = () => (
+  <section className="max-w-5xl mx-auto px-4 pb-16">
+    <div className="relative aspect-video w-full overflow-hidden rounded-2xl shadow-2xl bg-gray-900 group">
+      {/* Thumbnail / Video Wrapper */}
+      <iframe
+        className="w-full h-full border-0"
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+        title="Product Demo Video"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      ></iframe>
+    </div>
+  </section>
+);
+
+// Main Section Wrapper Component
+export default function ProductSection() {
+  return (
+    <div className="w-full bg-slate-50 min-h-screen py-6">
+      <HeroShowcase />
+      <SocialProof />
+      <DemoVideo />
+    </div>
   );
 }

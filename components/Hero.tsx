@@ -9,8 +9,9 @@ export default function HeroSection() {
         
         {/* Top Pill Badge */}
         <div className="inline-flex items-center gap-2 bg-purple-50 border border-purple-200 text-purple-700 px-3.5 py-1 rounded-full text-xs sm:text-sm font-medium mb-6 shadow-sm">
-          <span>🐝</span>
-          <span>— AI Powered - Customer Growth Platform</span>
+        <span className="inline-flex items-center gap-1 bg-green-400 text-white px-1.5 py-1.5 rounded-full text-xs font-semibold animate-pulse [animation-duration:2s] uppercase tracking-wide whitespace-nowrap"> </span>
+          
+          <span>Official Meta Tech Partner</span>
         </div>
 
         {/* Clean Hero Heading */}
