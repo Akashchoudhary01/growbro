@@ -1,24 +1,26 @@
 'use client';
 
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import ChannelBadges from './ChannelBadges';
 
 export default function HeroSection() {
   return (
     <section className="relative pt-8 pb-16 bg-white overflow-hidden">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+      <div className="max-w-4xl font-semibold mx-auto px-4 sm:px-6 text-center">
         
         {/* Top Pill Badge */}
         <div className="inline-flex items-center gap-2 bg-purple-50 border border-purple-200 text-purple-700 px-3.5 py-1 rounded-full text-xs sm:text-sm font-medium mb-6 shadow-sm">
         <span className="inline-flex items-center gap-1 bg-green-400 text-white px-1.5 py-1.5 rounded-full text-xs font-semibold animate-pulse [animation-duration:2s] uppercase tracking-wide whitespace-nowrap"> </span>
           
-          <span>Official Meta Tech Partner</span>
+          <span>Ai Powered whatsapp marketing Platform</span>
         </div>
 
         {/* Clean Hero Heading */}
         <h1 className="text-3xl sm:text-5xl font-extrabold text-gray-900 tracking-tight leading-snug mb-5">
-          <span className="text-[#10B981]">Customers ask. Growbro gets it done.</span>
+          <span className="text-[#10B981]">AI Powered - Customer Growth Platform</span>
+          {/* //Customers connect. Growbro takes care of the rest */}
           <br className="hidden sm:inline" />
-          <span className="text-gray-900 sm:mt-1 inline-block"> Turn Customer Conversations Into Business.</span>
+          {/* <span className="text-gray-900 sm:mt-1 inline-block"> Turn Customer Conversations Into Business.</span> */}
         </h1>
 
         {/* Subheading */}
@@ -28,13 +30,7 @@ export default function HeroSection() {
           across the channels they choose.
         </p>
 
-        {/* Channel Badges */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-8 text-xs font-semibold text-gray-700">
-          <span className="bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1 rounded-md">WhatsApp</span>
-          <span className="bg-pink-50 text-pink-700 border border-pink-200 px-3 py-1 rounded-md">Instagram</span>
-          <span className="bg-blue-50 text-blue-700 border border-blue-200 px-3 py-1 rounded-md">Messenger</span>
-          <span className="bg-gray-100 text-gray-800 border border-gray-200 px-3 py-1 rounded-md">Website</span>
-        </div>
+      <ChannelBadges/>
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-6">
