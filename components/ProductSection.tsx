@@ -59,7 +59,7 @@ export const DemoVideo = () => (
       {/* HTML5 Video Element */}
       <video
         className="w-full h-full object-cover"
-        src="/growbro.mp4"        // Change this to match your actual file name in the public folder
+        src="/video/growbro.mp4"        // Change this to match your actual file name in the public folder
         controls               // Adds play, pause, volume, and fullscreen controls
         autoPlay               // Optional: Starts playing automatically
         muted                  // Recommended if autoPlay is used (browsers block unmuted autoplay)
