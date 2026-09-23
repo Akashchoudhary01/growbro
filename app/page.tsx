@@ -3,6 +3,11 @@ import HeroSection from '@/components/Hero';
 import ProductSection from '@/components/ProductSection';
 import Footer from '@/components/Footer';
 import ProductFeature from '@/components/ProductFeature';
+import FeaturesMarquee from '@/components/FeaturesMarquee';
+import CustomerReviews from '@/components/CustomerReviews';
+import FinalCTA from '@/components/FinalCTA';
+import ComplianceSection from '@/components/ComplianceSection';
+import CReview from '@/components/CReview';
 // import ClientsSection from '@/components/ClientSection';
 
 export default function Home() {
@@ -12,6 +17,11 @@ export default function Home() {
       <HeroSection />
       <ProductSection/>
       <ProductFeature/>
+      <FeaturesMarquee/>
+      {/* <CustomerReviews/> */}
+      <CReview/>
+      <ComplianceSection/>
+      <FinalCTA/>
       <Footer/>
   
     </main>

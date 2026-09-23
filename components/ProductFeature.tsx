@@ -26,7 +26,7 @@ interface Channel {
 // Layout constants — NAV_GAP_PX set to 0 for zero gap below the navbar.
 // ---------------------------------------------------------------------------
 
-const NAVBAR_HEIGHT_PX = 125; // Combined height of announcement bar + main navbar in px
+const NAVBAR_HEIGHT_PX = 110; // Combined height of announcement bar + main navbar in px
 const NAV_GAP_PX = 0; // Exactly 0px gap between navbar and the sticky channel-nav banner
 const BANNER_HEIGHT_PX = 64; // approx height of the channel-nav banner row
 
@@ -39,7 +39,7 @@ const CHANNELS: Channel[] = [
     id: 'whatsapp',
     label: 'WhatsApp',
     icon: FaWhatsapp,
-    eyebrow: 'INBOUND AUTOMATION',
+    eyebrow: 'Agentic WhatsApp',
     heading: 'Every WhatsApp chat answered in seconds',
     description:
       'Growbro reads incoming WhatsApp messages the moment they land, qualifies the lead, and replies with context from your catalog and CRM — no agent has to pick up first.',
@@ -55,7 +55,7 @@ const CHANNELS: Channel[] = [
     label: 'Instagram',
     icon: FaInstagram,
     eyebrow: 'COMMENT TO CONVERSATION',
-    heading: 'Turn DMs and comments into conversations',
+    heading: 'Turn Instagram DMs and comments into conversations',
     description:
       'Growbro monitors comments and DMs, replies publicly to keep engagement up, and quietly moves interested buyers into a private thread ready to close.',
     bullets: [
@@ -69,7 +69,7 @@ const CHANNELS: Channel[] = [
     id: 'payments',
     label: 'Payment Gateway',
     icon: CreditCard,
-    eyebrow: 'BILLING, INSIDE THE CHAT',
+    eyebrow: 'Payment Gateway',
     heading: 'Collect payments without leaving the conversation',
     description:
       'Growbro generates payment links, shares them inline, and confirms the order automatically once payment lands — synced straight to your CRM.',
@@ -84,7 +84,7 @@ const CHANNELS: Channel[] = [
     id: 'crm',
     label: 'CRM & Dashboard',
     icon: LayoutDashboard,
-    eyebrow: 'ONE SOURCE OF TRUTH',
+    eyebrow: 'CRM & Dashboard',
     heading: 'Nothing falls through the cracks',
     description:
       'Every conversation, order and payment updates your CRM automatically — no manual logging, no lost leads between tools.',
@@ -99,7 +99,7 @@ const CHANNELS: Channel[] = [
     id: 'website',
     label: 'Website',
     icon: Globe,
-    eyebrow: 'CAPTURE EVERY VISITOR',
+    eyebrow: 'Website Chat + Checkout',
     heading: 'Turn website traffic into booked meetings',
     description:
       'A Growbro widget greets visitors, qualifies intent, and books a demo or hands off warm leads to sales — synced with the same CRM as your other channels.',
@@ -142,25 +142,26 @@ export default function ProductFeature() {
   };
 
   return (
-    <section className="w-full bg-white py-20 sm:py-28">
+    <section className="w-full bg-white py-10 sm:py-8">
       <div className="mx-auto max-w-6xl px-6">
         {/* Section intro */}
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            One AI Agent. <span className="text-emerald-500">Every Channel.</span>{' '}
-            <span className="text-emerald-500">Every Action.</span>
+             AI agents on <span className="text-emerald-500">Every Channel.</span>{' '}
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-slate-600">
-            Tap a channel to jump straight to it, or just keep scrolling.
+         
+          <p className="mt-4 mb-5 text-base leading-relaxed text-black">
+            Give every customer an instant first response, guided qualification, and a clear next step, whether they message, call, comment, or visit your website.
           </p>
         </div>
 
         {/*
           Nav banner — sticky exactly NAV_GAP_PX (0px) below the combined navbar height.
+          Changed to flex row with horizontal scroll on mobile, and standard grid on sm+ screens.
         */}
         <div
           style={{ top: `${NAVBAR_HEIGHT_PX + NAV_GAP_PX}px` }}
-          className="sticky z-40 mt-10 grid grid-cols-2 divide-x divide-y divide-slate-200 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-md sm:grid-cols-5 sm:divide-y-0"
+          className="sticky z-40 mt-0 flex overflow-x-auto divide-x divide-slate-200 overflow-hidden rounded-2xl border border-y-emerald-500 bg-white shadow-md sm:grid sm:grid-cols-5 sm:divide-y-0 scrollbar-none"
         >
           {CHANNELS.map((channel) => {
             const Icon = channel.icon;
@@ -169,14 +170,14 @@ export default function ProductFeature() {
               <button
                 key={channel.id}
                 onClick={() => scrollToSection(channel.id)}
-                className={`flex items-center justify-center gap-2 border-b-2 px-4 py-4 text-sm font-medium transition-colors sm:text-base ${
+                className={`flex shrink-0 grow basis-0 items-center justify-center gap-2 border-b-2 px-4 py-4 text-sm font-medium transition-colors sm:text-base ${
                   isActive
                     ? 'border-emerald-500 bg-emerald-50 font-semibold text-emerald-700'
                     : 'border-transparent bg-white text-slate-500 hover:bg-emerald-50/40 hover:text-emerald-700'
                 }`}
               >
-                <Icon size={16} className={isActive ? 'text-emerald-600' : 'text-slate-400'} />
-                {channel.label}
+                <Icon size={18} className={isActive ? 'text-emerald-600' : 'text-slate-400'} />
+                <span className="hidden sm:inline">{channel.label}</span>
               </button>
             );
           })}
@@ -251,7 +252,7 @@ function VideoPlayer({ src, poster, label }: { src: string; poster?: string; lab
           loop
           playsInline
           poster={poster}
-          className="aspect-9/19.5 w-full rounded-[1.75rem] object-contain bg-slate-950"
+          className="aspect-11/20 w-full rounded-[1.75rem] object-cover bg-slate-950"
           preload="metadata"
           aria-label={`${label} walkthrough video`}
         >

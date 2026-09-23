@@ -15,6 +15,35 @@
   0% { transform: translateX(0%); }
   100% { transform: translateX(-50%); }
 }
+/* Tab Progress Loader Animation */
+@keyframes progress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.animate-progress {
+  animation: progress 5s linear forwards;
+}
+
+/* Card Fade In Transition */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.4s ease-out forwards;
+}
 
 .animate-marquee {
   display: flex;
@@ -24,6 +53,24 @@
 
 .animate-marquee:hover {
   animation-play-state: paused; /* Pauses on hover so users can see */
+}
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
 @keyframes shine {
   0% { background-position: 200% 0; }
