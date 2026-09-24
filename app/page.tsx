@@ -8,6 +8,7 @@ import CustomerReviews from '@/components/CustomerReviews';
 import FinalCTA from '@/components/FinalCTA';
 import ComplianceSection from '@/components/ComplianceSection';
 import CReview from '@/components/CReview';
+import IntegrationsSection from '@/components/IntegrationSection';
 // import ClientsSection from '@/components/ClientSection';
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
       <ProductFeature/>
       <FeaturesMarquee/>
       {/* <CustomerReviews/> */}
+      <IntegrationsSection/>
       <CReview/>
       <ComplianceSection/>
       <FinalCTA/>

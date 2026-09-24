@@ -40,13 +40,15 @@ const CHANNELS: Channel[] = [
     label: 'WhatsApp',
     icon: FaWhatsapp,
     eyebrow: 'Agentic WhatsApp',
-    heading: 'Every WhatsApp chat answered in seconds',
+    heading: 'Replies That Close, Not Just Chat.',
     description:
-      'Growbro reads incoming WhatsApp messages the moment they land, qualifies the lead, and replies with context from your catalog and CRM — no agent has to pick up first.',
+      "GrowBro doesn't just reply on WhatsApp — it completes transactions. Customer asks about availability → agent confirms → sends payment link → updates your calendar. All inside one WhatsApp thread.",
     bullets: [
-      'Instant reply, day or night',
-      'Smart product recommendations from your catalogue',
-      'Appointment booking with calendar sync',
+    " Instant replies — 0-second response time, 24/7",
+"Smart product recommendations from your catalogue",
+"Payment collection via Razorpay / UPI / PayTM in chat",
+"Appointment booking with calendar sync",
+"Automatic CRM update after every conversation",
     ],
     videoSrc: '/video/whatsapp.mp4',
   },
@@ -54,14 +56,15 @@ const CHANNELS: Channel[] = [
     id: 'instagram',
     label: 'Instagram',
     icon: FaInstagram,
-    eyebrow: 'COMMENT TO CONVERSATION',
-    heading: 'Turn Instagram DMs and comments into conversations',
+    eyebrow: 'Instagram DMs',
+    heading: 'Turn Every DM Into a Done Deal.',
     description:
-      'Growbro monitors comments and DMs, replies publicly to keep engagement up, and quietly moves interested buyers into a private thread ready to close.',
+      'When someone DMs your Instagram "how much is this?", GrowBro replies instantly, shares the product link, and moves them to WhatsApp to complete the purchase — without you lifting a finger.',
     bullets: [
-      'Auto-replies to comments on ads and posts',
-      'Moves hot leads from comment to DM',
-      'Keeps your brand voice on every reply',
+    "Auto-reply to story mentions and DMs",
+"Cross-channel handoff — Instagram to WhatsApp seamlessly",
+"Lead capture from DMs directly into your CRM",
+"Comment auto-reply for lead generation"
     ],
     videoSrc: '/video/instagram.mp4',
   },
@@ -70,13 +73,14 @@ const CHANNELS: Channel[] = [
     label: 'Payment Gateway',
     icon: CreditCard,
     eyebrow: 'Payment Gateway',
-    heading: 'Collect payments without leaving the conversation',
+    heading: 'Collect Payments Inside the Chat.',
     description:
-      'Growbro generates payment links, shares them inline, and confirms the order automatically once payment lands — synced straight to your CRM.',
+      'GrowBro integrates seamlessly with Razorpay, allowing your AI agent to generate payment links, confirm transactions, and guide customers through the payment process — all without leaving the conversation.',
     bullets: [
-      'One-tap payment links inside WhatsApp or Instagram',
-      'Auto order confirmation on successful payment',
-      'Works with Razorpay and other major gateways',
+    " Instant Razorpay payment link generation",
+"Real-time payment confirmation updates",
+"Automated order and payment follow-ups",
+"Works across WhatsApp, Instagram, and websites",
     ],
     videoSrc: '/video/razorpay.mp4',
   },
@@ -85,13 +89,14 @@ const CHANNELS: Channel[] = [
     label: 'CRM & Dashboard',
     icon: LayoutDashboard,
     eyebrow: 'CRM & Dashboard',
-    heading: 'Nothing falls through the cracks',
+    heading: 'Everything Updates. Nothing Falls Through.',
     description:
-      'Every conversation, order and payment updates your CRM automatically — no manual logging, no lost leads between tools.',
+      ' Every conversation, every lead, every sale — automatically filed in your CRM in real time. Full conversation history. Contact tagging. Deal stage updates. Revenue attribution. You see everything from one dashboard, across all four channels',
     bullets: [
-      'Unified inbox across every channel',
-      'Auto-tagging and lead scoring',
-      'Sync to Sheets, HubSpot or your own CRM',
+   "   Unified inbox across WhatsApp, Instagram, FB, Web",
+"Auto-tagging and lead scoring",
+"Revenue attribution per channel",
+"Export to Google Sheets, HubSpot, Zoho",
     ],
     videoSrc: '/video/crm.mp4',
   },
@@ -159,7 +164,7 @@ export default function ProductFeature() {
           Nav banner — sticky exactly NAV_GAP_PX (0px) below the combined navbar height.
           Changed to flex row with horizontal scroll on mobile, and standard grid on sm+ screens.
         */}
-        <div
+        {/* <div
           style={{ top: `${NAVBAR_HEIGHT_PX + NAV_GAP_PX}px` }}
           className="sticky z-40 mt-0 flex overflow-x-auto divide-x divide-slate-200 overflow-hidden rounded-2xl border border-y-emerald-500 bg-white shadow-md sm:grid sm:grid-cols-5 sm:divide-y-0 scrollbar-none"
         >
@@ -181,7 +186,7 @@ export default function ProductFeature() {
               </button>
             );
           })}
-        </div>
+        </div> */}
 
         {/* All channel sections, stacked, alternating content/video sides */}
         <div className="mt-20 space-y-24">
