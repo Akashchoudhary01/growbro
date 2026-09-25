@@ -9,6 +9,8 @@ import FinalCTA from '@/components/FinalCTA';
 import ComplianceSection from '@/components/ComplianceSection';
 import CReview from '@/components/CReview';
 import IntegrationsSection from '@/components/IntegrationSection';
+import FAQSection from '@/components/FAQSection';
+import PartnersSection from '@/components/PartnerSection';
 // import ClientsSection from '@/components/ClientSection';
 
 export default function Home() {
@@ -22,7 +24,10 @@ export default function Home() {
       {/* <CustomerReviews/> */}
       <IntegrationsSection/>
       <CReview/>
-      <ComplianceSection/>
+      {/* <ComplianceSection/>
+       */}
+       <PartnersSection/>
+       <FAQSection/>
       <FinalCTA/>
       <Footer/>
   

@@ -67,18 +67,34 @@ function shuffle<T>(input: T[]): T[] {
 export default function IntegrationsSection() {
   const [activeCategory, setActiveCategory] = useState<Category>('CRM');
   const [isPaused, setIsPaused] = useState(false);
-  const activeCatRef = useRef<Category>('CRM'); // Holds current category strictly for the interval timer
+  const activeCatRef = useRef<Category>('CRM');
 
-  // 1. Initial State: Deterministic (Unshuffled) to avoid Server/Client Hydration Error
+  // 1. Initial State: Fixed deterministic layout to prevent hydration errors, 
+  // but explicitly scattered so it doesn't look clumped on the first load.
   const [displayedTenTools, setDisplayedTenTools] = useState<Integration[]>(() => {
     const activeTools = ALL_INTEGRATIONS.filter((item) => item.category === 'CRM');
     const otherTools = ALL_INTEGRATIONS.filter((item) => item.category !== 'CRM');
-    return [...activeTools, ...otherTools].slice(0, 10);
+    
+    const initialDisplay = new Array(10).fill(null);
+    const fixedIndices = [1, 4, 2, 7, 8, 9, 0, 3, 5, 6]; 
+    
+    activeTools.forEach((tool, i) => {
+      if (i < 10) initialDisplay[fixedIndices[i]] = tool;
+    });
+    
+    let otherIndex = 0;
+    for (let i = 0; i < 10; i++) {
+      if (initialDisplay[i] === null) {
+        initialDisplay[i] = otherTools[otherIndex++];
+      }
+    }
+    
+    return initialDisplay;
   });
 
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // 2. Unified Event Handler: Updates Category AND the shuffled grid together
+  // 2. Unified Event Handler: Shuffles and randomly disperses the active tools across the 10 slots
   const changeCategory = useCallback((newCat: Category) => {
     activeCatRef.current = newCat;
     setActiveCategory(newCat);
@@ -86,7 +102,25 @@ export default function IntegrationsSection() {
     const activeTools = shuffle(ALL_INTEGRATIONS.filter((item) => item.category === newCat));
     const otherTools = shuffle(ALL_INTEGRATIONS.filter((item) => item.category !== newCat));
 
-    setDisplayedTenTools([...activeTools, ...otherTools].slice(0, 10));
+    const newDisplay = new Array(10).fill(null);
+    const randomIndices = shuffle([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+
+    // Scatter active tools into random empty slots
+    activeTools.forEach((tool, i) => {
+      if (i < 10) {
+        newDisplay[randomIndices[i]] = tool;
+      }
+    });
+
+    // Backfill the remaining slots with inactive tools
+    let otherIndex = 0;
+    for (let i = 0; i < 10; i++) {
+      if (newDisplay[i] === null && otherIndex < otherTools.length) {
+        newDisplay[i] = otherTools[otherIndex++];
+      }
+    }
+
+    setDisplayedTenTools(newDisplay);
   }, []);
 
   // 3. Autoplay Timer
@@ -104,7 +138,6 @@ export default function IntegrationsSection() {
     };
   }, [isPaused, changeCategory]);
 
-  // Tab Click Handler
   const handleTabClick = (category: Category) => {
     changeCategory(category);
     setIsPaused(true);
@@ -112,25 +145,25 @@ export default function IntegrationsSection() {
   };
 
   return (
-    <section className="py-20 bg-white border-y border-gray-100 select-none">
+    <section className="py-20 bg-[#fafafa] border-y border-gray-100 select-none">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
 
           {/* Left Side Context */}
           <div className="lg:col-span-5">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#09A372] bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full inline-block mb-4">
-              Integrations Hub
+            <span className="text-xs font-bold uppercase tracking-wider text-[#0084FF] mb-4 block">
+              INTEGRATIONS
             </span>
-            <h2 className="text-3xl sm:text-5xl font-black text-gray-900 tracking-tight leading-tight mb-4">
+            <h2 className="text-4xl sm:text-5xl font-normal text-gray-900 tracking-tight leading-tight mb-6">
               Works with the tools you already use. <br />
-              <span className="text-gray-400">No rebuild needed.</span>
+              No rebuild needed.
             </h2>
-            <p className="text-sm sm:text-base text-gray-600 mb-8 leading-relaxed">
+            <p className="text-sm sm:text-base text-gray-700 mb-10 leading-relaxed">
               Growbro connects to your CRM, payment gateways, messaging channels, calendar, and automation platforms so your AI agents start with full context.
             </p>
             <Link
               href="/integrations"
-              className="inline-flex items-center gap-2 bg-black hover:bg-gray-800 text-white font-bold px-6 py-3.5 rounded-lg text-sm transition-all shadow-md"
+              className="inline-flex items-center gap-2 bg-black hover:bg-gray-800 text-white font-bold px-6 py-3 rounded text-sm transition-all shadow-md"
             >
               Browse all 30+ integrations <ArrowUpRight className="w-4 h-4" />
             </Link>
@@ -138,23 +171,23 @@ export default function IntegrationsSection() {
 
           {/* Right Side: Category Tabs + 10-Slot Grid Layout */}
           <div
-            className="lg:col-span-7 bg-gray-50/60 p-6 rounded-3xl border border-gray-200/80 shadow-xs"
+            className="lg:col-span-7 bg-white p-6 rounded-md shadow-sm border border-gray-100"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
 
-            {/* Category Tabs Header */}
-            <div className="flex items-center gap-1.5 overflow-x-auto pb-3 mb-6 no-scrollbar border-b border-gray-200">
+            {/* Category Tabs Header matching reference image */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-4 no-scrollbar">
               {CATEGORIES.map((category) => {
                 const isActive = activeCategory === category;
                 return (
                   <button
                     key={category}
                     onClick={() => handleTabClick(category)}
-                    className={`px-3.5 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap shrink-0 ${
+                    className={`flex-1 min-w-[100px] py-3 px-3 text-sm transition-all whitespace-nowrap shrink-0 border ${
                       isActive
-                        ? 'bg-[#DCFCE7] text-[#09A372] border-t-2 border-[#09A372] shadow-2xs'
-                        : 'bg-white text-gray-600 hover:text-gray-900 border border-gray-200/80'
+                        ? 'bg-[#f4fce3] text-gray-900 border-gray-200 border-l-[4px] border-l-[#bef264]' 
+                        : 'bg-[#fcfcfc] text-gray-600 hover:bg-gray-50 border-gray-200 border-l-[1px]'
                     }`}
                   >
                     {category}
@@ -163,42 +196,41 @@ export default function IntegrationsSection() {
               })}
             </div>
 
-            {/* 3x4 Grid (10 outer slots surrounding Growbro center hex) */}
-            <div className="relative grid grid-cols-3 grid-rows-4 gap-3.5 min-h-[380px]">
+            {/* 3x4 Grid structure */}
+            <div className="relative grid grid-cols-3 grid-rows-4 gap-0 border border-gray-100 min-h-[420px]">
 
               {/* Row 1 */}
-              <GridTile key={displayedTenTools[0]?.id ?? 'a'} item={displayedTenTools[0]} activeCategory={activeCategory} />
-              <GridTile key={displayedTenTools[1]?.id ?? 'b'} item={displayedTenTools[1]} activeCategory={activeCategory} />
-              <GridTile key={displayedTenTools[2]?.id ?? 'c'} item={displayedTenTools[2]} activeCategory={activeCategory} />
+              <GridTile key={`0-${displayedTenTools[0]?.id}`} item={displayedTenTools[0]} activeCategory={activeCategory} />
+              <GridTile key={`1-${displayedTenTools[1]?.id}`} item={displayedTenTools[1]} activeCategory={activeCategory} />
+              <GridTile key={`2-${displayedTenTools[2]?.id}`} item={displayedTenTools[2]} activeCategory={activeCategory} />
 
-              {/* Row 2: left tile, CENTER HEX (spans 2 rows), right tile */}
-              <GridTile key={displayedTenTools[3]?.id ?? 'd'} item={displayedTenTools[3]} activeCategory={activeCategory} />
+              {/* Row 2 */}
+              <GridTile key={`3-${displayedTenTools[3]?.id}`} item={displayedTenTools[3]} activeCategory={activeCategory} />
 
-              {/* CENTER HEXAGON — Growbro mark. Add your logo file at /public/logo-mark.svg and it appears automatically. */}
-              <div className="row-span-2 col-start-2 row-start-2 flex items-center justify-center z-10">
-                <div
-                  className="relative w-24 h-24 bg-[#09A372] shadow-xl flex items-center justify-center overflow-hidden"
-                  style={{ clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)' }}
-                >
-                  <LogoImage
-                    src="/logo-mark.svg"
-                    alt="Growbro"
-                    sizes="40px"
-                    fallback={<span className="text-white font-black text-2xl tracking-tight">GB</span>}
-                  />
-                </div>
-              </div>
-
-              <GridTile key={displayedTenTools[4]?.id ?? 'e'} item={displayedTenTools[4]} activeCategory={activeCategory} />
+      {/* CENTER HEXAGON */}
+<div className="row-span-2 col-start-2 row-start-2 flex items-center justify-center z-10 border border-gray-100 bg-white">
+  <div
+    className="relative w-28 h-28 shadow-lg flex items-center justify-center overflow-hidden"
+    // style={}
+  >
+    <LogoImage
+      src="/ss.png"
+      alt="Growbro"
+      sizes="112px" // Updated from 60px to match w-28 h-28
+      fallback={<span className="text-white font-black text-3xl tracking-tight">GB</span>}
+    />
+  </div>
+</div>
+              <GridTile key={`4-${displayedTenTools[4]?.id}`} item={displayedTenTools[4]} activeCategory={activeCategory} />
 
               {/* Row 3 */}
-              <GridTile key={displayedTenTools[5]?.id ?? 'f'} item={displayedTenTools[5]} activeCategory={activeCategory} />
-              <GridTile key={displayedTenTools[6]?.id ?? 'g'} item={displayedTenTools[6]} activeCategory={activeCategory} />
+              <GridTile key={`5-${displayedTenTools[5]?.id}`} item={displayedTenTools[5]} activeCategory={activeCategory} />
+              <GridTile key={`6-${displayedTenTools[6]?.id}`} item={displayedTenTools[6]} activeCategory={activeCategory} />
 
               {/* Row 4 */}
-              <GridTile key={displayedTenTools[7]?.id ?? 'h'} item={displayedTenTools[7]} activeCategory={activeCategory} />
-              <GridTile key={displayedTenTools[8]?.id ?? 'i'} item={displayedTenTools[8]} activeCategory={activeCategory} />
-              <GridTile key={displayedTenTools[9]?.id ?? 'j'} item={displayedTenTools[9]} activeCategory={activeCategory} />
+              <GridTile key={`7-${displayedTenTools[7]?.id}`} item={displayedTenTools[7]} activeCategory={activeCategory} />
+              <GridTile key={`8-${displayedTenTools[8]?.id}`} item={displayedTenTools[8]} activeCategory={activeCategory} />
+              <GridTile key={`9-${displayedTenTools[9]?.id}`} item={displayedTenTools[9]} activeCategory={activeCategory} />
 
               <ConnectorDots />
             </div>
@@ -211,7 +243,6 @@ export default function IntegrationsSection() {
   );
 }
 
-// Renders the logo if the file exists at logoSrc, otherwise falls back to initial node
 function LogoImage({
   src,
   alt,
@@ -239,54 +270,44 @@ function LogoImage({
   );
 }
 
-// Sub-component for rendering each grid tile: a logo slot (next/image) + name
+// Simplified GridTile to only show the logo image and mimic the border-collapse feel
 function GridTile({ item, activeCategory }: { item: Integration; activeCategory: Category }) {
-  if (!item) return <div className="bg-white/40 rounded-xl border border-gray-100" />;
+  if (!item) return <div className="bg-white border border-gray-100" />;
 
   const isMatchedCategory = item.category === activeCategory;
 
   return (
     <div
-      className={`rounded-xl border flex items-center justify-center px-3 py-3 transition-all duration-300 ${
+      className={`border border-gray-100 flex items-center justify-center px-4 py-6 transition-all duration-500 bg-white ${
         isMatchedCategory
-          ? 'bg-white border-gray-200 shadow-sm opacity-100 filter-none scale-100'
-          : 'bg-gray-100/60 border-gray-200/50 opacity-30 grayscale blur-[0.8px] scale-95 pointer-events-none'
+          ? 'opacity-100 filter-none'
+          : 'opacity-40 grayscale blur-[0.5px] pointer-events-none'
       }`}
     >
-      <div className="flex items-center gap-2 min-w-0">
-        <div
-          className={`relative w-7 h-7 shrink-0 rounded-md flex items-center justify-center overflow-hidden ${
-            isMatchedCategory ? item.bgColor : 'bg-gray-200'
-          }`}
-        >
-          <LogoImage
-            src={item.logoSrc}
-            alt={item.name}
-            sizes="28px"
-            fallback={
-              <span className={`text-[10px] font-bold ${isMatchedCategory ? item.color : 'text-gray-400'}`}>
-                {item.name.charAt(0)}
-              </span>
-            }
-          />
-        </div>
-        <span className={`text-xs font-bold tracking-tight truncate ${isMatchedCategory ? 'text-gray-900' : 'text-gray-500'}`}>
-          {item.name}
-        </span>
+      <div className="relative w-full h-10 flex items-center justify-center">
+        <LogoImage
+          src={item.logoSrc}
+          alt={item.name}
+          sizes="100%"
+          fallback={
+            <span className={`text-sm font-bold tracking-tight text-center leading-tight ${isMatchedCategory ? item.color : 'text-gray-400'}`}>
+              {item.name}
+            </span>
+          }
+        />
       </div>
     </div>
   );
 }
 
-// Small decorative dots sitting in the gaps between grid cells
 function ConnectorDots() {
   const dotPositions = [
-    'top-[24.5%] left-[33%]',
-    'top-[24.5%] left-[67%]',
-    'top-[49.5%] left-[33%]',
-    'top-[49.5%] left-[67%]',
-    'top-[74.5%] left-[33%]',
-    'top-[74.5%] left-[67%]',
+    'top-[25%] left-[33.33%]',
+    'top-[25%] left-[66.66%]',
+    'top-[50%] left-[33.33%]',
+    'top-[50%] left-[66.66%]',
+    'top-[75%] left-[33.33%]',
+    'top-[75%] left-[66.66%]',
   ];
 
   return (
@@ -294,7 +315,7 @@ function ConnectorDots() {
       {dotPositions.map((position, i) => (
         <span
           key={i}
-          className={`hidden sm:block absolute w-1.5 h-1.5 rounded-full bg-gray-300 -translate-x-1/2 -translate-y-1/2 ${position}`}
+          className={`hidden sm:block absolute w-2 h-2 rounded-sm bg-gray-200 -translate-x-1/2 -translate-y-1/2 rotate-45 ${position}`}
         />
       ))}
     </>
