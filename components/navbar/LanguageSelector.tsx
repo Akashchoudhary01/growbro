@@ -1,3 +1,4 @@
+// components/LanguageSelector.tsx
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
@@ -27,8 +28,18 @@ export default function LanguageSelector() {
   const [selectedLang, setSelectedLang] = useState<Language>(LANGUAGES[0]);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Close dropdown when clicking outside
+  // Sync state from Google Translate cookie on load
   useEffect(() => {
+    const cookies = document.cookie.split(';');
+    const googtransCookie = cookies.find((c) => c.trim().startsWith('googtrans='));
+    if (googtransCookie) {
+      const langCode = googtransCookie.split('/')[2];
+      const found = LANGUAGES.find((l) => l.code === langCode);
+      if (found) {
+        setSelectedLang(found);
+      }
+    }
+
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsOpen(false);
@@ -38,9 +49,21 @@ export default function LanguageSelector() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  const handleLanguageChange = (lang: Language) => {
+    setSelectedLang(lang);
+    setIsOpen(false);
+
+    // Set the Google Translate internal cookie format: /source/target
+    const cookieValue = `/en/${lang.code}`;
+    document.cookie = `googtrans=${cookieValue}; path=/; domain=${window.location.hostname}`;
+    document.cookie = `googtrans=${cookieValue}; path=/;`;
+
+    // Refresh page to apply Google translation across all page content
+    window.location.reload();
+  };
+
   return (
     <div className="relative inline-block text-left" ref={dropdownRef}>
-      {/* Trigger Button */}
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
@@ -51,37 +74,26 @@ export default function LanguageSelector() {
         <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${isOpen ? 'rotate-180 text-[#09A372]' : ''}`} />
       </button>
 
-      {/* Scrollable Language Dropdown Panel */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-64 bg-white rounded-2xl border border-gray-200/80 shadow-2xl z-50 p-2 animate-fadeIn">
+        <div className="absolute right-0 mt-2 w-64 bg-white rounded-2xl border border-gray-200/80 shadow-2xl z-50 p-2">
           <div className="max-h-72 overflow-y-auto space-y-1 pr-1 custom-scrollbar">
             {LANGUAGES.map((lang) => {
               const isSelected = selectedLang.code === lang.code;
               return (
                 <button
                   key={lang.code}
-                  onClick={() => {
-                    setSelectedLang(lang);
-                    setIsOpen(false);
-                  }}
+                  onClick={() => handleLanguageChange(lang)}
                   className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left transition-colors ${
-                    isSelected
-                      ? 'bg-emerald-50/80 text-[#09A372]'
-                      : 'hover:bg-gray-50 text-gray-800'
+                    isSelected ? 'bg-emerald-50/80 text-[#09A372]' : 'hover:bg-gray-50 text-gray-800'
                   }`}
                 >
                   <div className="flex items-baseline gap-2">
-                    <span className="font-bold text-base leading-none">
-                      {lang.nativeName}
-                    </span>
+                    <span className="font-bold text-base leading-none">{lang.nativeName}</span>
                     <span className={`text-xs ${isSelected ? 'text-emerald-600/70' : 'text-gray-400'}`}>
                       {lang.englishName}
                     </span>
                   </div>
-
-                  {isSelected && (
-                    <Check className="w-4 h-4 text-[#09A372] stroke-[2.5] shrink-0" />
-                  )}
+                  {isSelected && <Check className="w-4 h-4 text-[#09A372] stroke-[2.5] shrink-0" />}
                 </button>
               );
             })}

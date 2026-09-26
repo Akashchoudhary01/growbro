@@ -13,7 +13,11 @@ export default function CompanyMenu({ onClose, onMouseEnter, onMouseLeave }: Com
   const aboutItems = [
     { title: 'About Us', desc: 'Our mission and team', href: '/company/about' },
     { title: 'Contact', desc: 'Get in touch with us', href: '/company/contact' },
-    { title: 'Help Center', desc: 'Guides and documentation', href: '/company/help-center' },
+    {
+  title: 'Help Center',
+  desc: 'Guides and documentation',
+  href: '/company/help-center'
+},
     { title: 'QR Code Generator', desc: 'Create permanent WhatsApp QR codes', href: '/company/qr-generator' },
   ];
 

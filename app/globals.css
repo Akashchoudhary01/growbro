@@ -40,7 +40,32 @@
     transform: translateY(0);
   }
 }
+/* Language */
+/* Hides the default top Google Translate banner frame */
+.goog-te-banner-frame {
+  display: none !important;
+}
 
+/* Prevents Google from pushing the body down */
+body {
+  top: 0 !important;
+  position: static !important;
+}
+
+/* Hides Google's default tooltip popups */
+.goog-tooltip {
+  display: none !important;
+}
+
+.goog-tooltip:hover {
+  display: none !important;
+}
+
+.goog-text-highlight {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+/*  */
 .animate-fadeIn {
   animation: fadeIn 0.4s ease-out forwards;
 }
