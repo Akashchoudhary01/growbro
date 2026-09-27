@@ -22,7 +22,7 @@ export default function Home() {
       <ProductFeature/>
       <FeaturesMarquee/>
       {/* <CustomerReviews/> */}
-      <IntegrationsSection/>
+      {/* <IntegrationsSection/> */}
       <CReview/>
       {/* <ComplianceSection/>
        */}

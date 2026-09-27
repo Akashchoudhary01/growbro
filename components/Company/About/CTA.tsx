@@ -82,7 +82,7 @@ export default function LetGrowSection() {
         <div>
           <Link
             href="/company/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[#09a372] hover:bg-[#078a61] text-white font-bold text-sm shadow-lg shadow-emerald-600/25 transition-all duration-300 hover:scale-[1.03] group"
+            className="inline-flex items-center gap-2 mb-10 px-8 py-4 rounded-xl bg-[#09a372] hover:bg-[#078a61] text-white font-bold text-sm shadow-lg shadow-emerald-600/25 transition-all duration-300 hover:scale-[1.03] group"
           >
             Book a Demo 
             <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
