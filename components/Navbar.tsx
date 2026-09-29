@@ -120,7 +120,7 @@ export default function Navbar() {
             )}
           </div>
 
-          <Link href="#pricing" className="hover:text-[#09A372] transition-colors">Pricing</Link>
+          <Link href="/pricing" className="hover:text-[#09A372] transition-colors">Pricing</Link>
 
           {/* Resources Trigger */}
           <div onMouseEnter={() => handleMouseEnter('resources')} onMouseLeave={handleMouseLeave}>
@@ -151,7 +151,7 @@ export default function Navbar() {
             )}
           </div>
 
-          <Link href="#partner" className="hover:text-[#09A372] transition-colors">Partner</Link>
+          <Link href="/partner" className="hover:text-[#09A372] transition-colors">Partner</Link>
         </div>
 
         {/* Action Buttons */}
@@ -182,7 +182,7 @@ export default function Navbar() {
           <div className="divide-y divide-gray-100">
             <Link href="/product" className="block py-3.5 text-sm font-medium text-gray-800" onClick={() => setIsOpen(false)}>Product</Link>
             <Link href="/use-cases" className="block py-3.5 text-sm font-medium text-gray-800" onClick={() => setIsOpen(false)}>Use Cases</Link>
-            <Link href="#pricing" className="block py-3.5 text-sm font-medium text-gray-800" onClick={() => setIsOpen(false)}>Pricing</Link>
+            <Link href="/pricing" className="block py-3.5 text-sm font-medium text-gray-800" onClick={() => setIsOpen(false)}>Pricing</Link>
             <Link href="/resources" className="block py-3.5 text-sm font-medium text-gray-800" onClick={() => setIsOpen(false)}>Resources</Link>
             <Link href="/company" className="block py-3.5 text-sm font-medium text-gray-800" onClick={() => setIsOpen(false)}>Company</Link>
           </div>
