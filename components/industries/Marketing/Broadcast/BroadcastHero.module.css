@@ -1,0 +1,71 @@
+.section {
+  --green: #059669;
+  --green-dark: #047857;
+  --ink: #0b1324;
+  --muted: #64748b;
+  background: radial-gradient(900px 500px at 0% 100%, #dcfce7 0%, transparent 60%),
+    linear-gradient(180deg, #f0fdf6 0%, #fff 70%);
+  padding: 28px 24px 40px;
+}
+.inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+}
+.pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 14px; border: 1px solid #a7f3d0; background: #ecfdf5; color: var(--green-dark);
+  border-radius: 999px; font-size: 12px; font-weight: 600;
+}
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+.title {
+  margin: 22px 0 0; font-size: clamp(34px, 4vw, 46px); line-height: 1.08; max-width: 480px; letter-spacing: -0.035em;
+  font-weight: 800; color: var(--ink);
+}
+.accent { color: var(--green); }
+.sub { margin: 24px 0 0; max-width: 440px; color: var(--muted); font-size: 15px; line-height: 1.6; }
+.ctas { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
+.primary, .secondary {
+  display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+  padding: 13px 20px; border-radius: 10px; font-size: 14px; font-weight: 700;
+}
+.primary { background: var(--green); color: #fff; box-shadow: 0 8px 20px rgba(5, 150, 105, 0.3); transition: transform .15s, background .15s; }
+.primary:hover { background: var(--green-dark); transform: translateY(-1px); }
+.secondary { background: #fff; color: var(--ink); border: 1px solid #e2e8f0; font-weight: 600; }
+.secondary:hover { background: #f8fafc; }
+.perks { display: flex; gap: 18px; list-style: none; padding: 0; margin: 24px 0 0; flex-wrap: wrap; color: #94a3b8; font-size: 12px; }
+.perks li { display: flex; align-items: center; gap: 5px; }
+.perks svg { color: #34d399; }
+
+.card { background: #fff; border-radius: 14px; box-shadow: 0 12px 40px rgba(15, 23, 42, 0.1); overflow: hidden; border: 1px solid #eef2f6; }
+.tabs { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid #eef2f6; }
+.tab {
+  padding: 14px 0; border: 0; background: #fff; color: #94a3b8; font-size: 11px; font-weight: 600;
+  border-bottom: 2px solid transparent; transition: background .2s, color .2s;
+}
+.tab:hover { color: var(--green); }
+.tabActive { background: #ecfdf5; color: var(--green-dark); border-bottom-color: var(--green); }
+.body { display: grid; grid-template-columns: 1.15fr 1fr; gap: 28px; padding: 20px 18px 24px; animation: fade .35s ease; }
+@keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+.label { margin: 0 0 12px; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: #94a3b8; font-weight: 700; }
+.field { background: #f6f9fc; border-radius: 8px; padding: 9px 12px; margin-bottom: 8px; }
+.field small { display: block; font-size: 9px; color: #94a3b8; font-weight: 500; margin-bottom: 2px; }
+.field strong { font-size: 12px; font-weight: 700; }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+.chip { background: #d1fae5; color: var(--green-dark); font-size: 9px; font-weight: 600; padding: 3px 8px; border-radius: 999px; }
+.schedule {
+  width: 100%; margin-top: 8px; padding: 11px; border: 0; border-radius: 8px; background: var(--green); color: #fff;
+  font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.schedule:hover { background: var(--green-dark); }
+.phone { background: #e5ddd3; border-radius: 14px; padding: 12px; }
+.bubble { background: #fff; border-radius: 8px; padding: 10px; font-size: 9.5px; line-height: 1.5; color: #1f2937; }
+.bubble p { margin: 0 0 9px; }
+.waBtn { display: block; background: #00a884; color: #fff; text-align: center; border-radius: 4px; font-size: 8.5px; font-weight: 700; padding: 6px 0; margin-top: 5px; }
+.delivered { display: block; text-align: right; font-style: normal; font-size: 8px; color: #94a3b8; margin-top: 6px; }
+
+@media (max-width: 900px) {
+  .inner { grid-template-columns: 1fr; gap: 40px; }
+}
+@media (max-width: 480px) {
+  .body { grid-template-columns: 1fr; }
+}

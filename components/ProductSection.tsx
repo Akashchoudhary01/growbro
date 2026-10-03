@@ -1,7 +1,9 @@
 import React from 'react'
-import Image from 'next/image';
-import { Video } from 'lucide-react';
+// import Image from 'next/image';
+// import { Video } from 'lucide-react';
 import ClientsSection from './ClientSection';
+// import AgentDemo from './AgentDemo/AgentDemo';
+import AgentDemo from './AgentDemo/AgentDemo';
 
 
 // // Brand Logos Data
@@ -13,18 +15,18 @@ import ClientsSection from './ClientSection';
 //   { name: 'Brand 5', src: 'https://via.placeholder.com/120x40?text=Logo+5' },
 // ];
 
-// 1. Hero Showcase Image Component
-const HeroShowcase = () => (
-  <div className="relative max-w-5xl mx-auto my-8 px-4 flex justify-center">
-    <Image
-      src="/heroo.png"
-        width={1600}
-  height={900}
-      alt="Product Showcase"
-      className="w-full h-auto object-contain rounded-xl shadow-lg"
-    />
-  </div>
-);
+// // 1. Hero Showcase Image Component
+// const HeroShowcase = () => (
+//   <div className="relative max-w-5xl mx-auto my-8 px-4 flex justify-center">
+//     <Image
+//       src="/heroo.png"
+//         width={1600}
+//   height={900}
+//       alt="Product Showcase"
+//       className="w-full h-auto object-contain rounded-xl shadow-lg"
+//     />
+//   </div>
+// );
 
 // // 2. Social Proof & Brand Logos Component
 // const SocialProof = () => (
@@ -78,7 +80,10 @@ export const DemoVideo = () => (
 export default function ProductSection() {
   return (
     <div className="w-full bg-slate-50 min-h-screen py-6">
-      <HeroShowcase />
+      {/* <HeroShowcase /> */}
+      <AgentDemo logoSrc="/logooo.png" logoAlt="Your brand" />;
+
+      
       {/* <SocialProof /> */}
             <ClientsSection/>
 

@@ -147,6 +147,7 @@ export default function Footer() {
                     <Image
                       src={partner.logo}
                       alt={`${partner.name} Logo`}
+                    
                       fill
                       className="object-contain"
                     />

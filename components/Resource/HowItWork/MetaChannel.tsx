@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaFacebookMessenger, FaInstagram, FaFacebook, FaCriticalRole } from 'react-icons/fa';
 import { FaWhatsapp } from 'react-icons/fa6';
+import Image from 'next/image';
 
 export default function MetaChannels() {
   return (
@@ -64,14 +65,27 @@ export default function MetaChannels() {
               </div>
             </div>
 
-            {/* Center Main Node */}
-            <div className="absolute top-[58%] left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-3 rounded-3xl shadow-xl border border-gray-100 flex items-center justify-center z-20">
-              <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-[#10b981] to-[#059669] flex items-center justify-center text-white shadow-xl shadow-emerald-600/30">
-                <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center">
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#10b981]"></div>
-                </div>
-              </div>
-            </div>
+           {/* Center Main Node */}
+<div className="absolute top-[58%] left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-3 rounded-3xl shadow-xl border border-gray-100 flex items-center justify-center z-20">
+  
+ 
+    {/* Inner White Circle (ncreased to w-10 h-10 to fit the logo) */}
+    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden">
+      
+      <Image
+        src="/logooo.png"
+        alt="Growbro Logo Icon"
+        width={80}
+        height={80}
+        priority
+        // Slightly smaller than the wrapper (w-7 h-7 = 28px) so it has nice padding inside the white circle
+        className="h-18 w-18 object-contain" 
+      />
+      
+   
+    
+  </div>
+</div>
 
             {/* Right Node: Messenger */}
             <div className="absolute right-8 md:right-12 top-1/2 -translate-y-1/2 bg-white p-2.5 rounded-2xl shadow-md border border-gray-100 flex items-center justify-center z-10">

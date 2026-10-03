@@ -93,11 +93,15 @@ export default function Navbar() {
         <div className="hidden lg:flex items-center gap-7 text-sm font-medium text-gray-700">
           
           {/* Product Trigger */}
-          <div onMouseEnter={() => handleMouseEnter('product')} onMouseLeave={handleMouseLeave}>
-            <button className={`flex items-center gap-1 transition-colors py-5 focus:outline-none ${activeMenu === 'product' ? 'text-[#09A372]' : 'hover:text-[#09A372]'}`}>
-              Product {activeMenu === 'product' ? <ChevronUp className="w-4 h-4 text-[#09A372]" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
-            </button>
-            {activeMenu === 'product' && (
+        {/* Product Trigger */}
+<div onMouseEnter={() => handleMouseEnter('product')} onMouseLeave={handleMouseLeave}>
+  <button 
+    suppressHydrationWarning // Add this line
+    className={`flex items-center gap-1 transition-colors py-5 focus:outline-none ${activeMenu === 'product' ? 'text-[#09A372]' : 'hover:text-[#09A372]'}`}
+  >
+    Product {activeMenu === 'product' ? <ChevronUp className="w-4 h-4 text-[#09A372]" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
+  </button>
+  {activeMenu === 'product' && (
               <ProductMenu 
                 onClose={() => setActiveMenu(null)} 
                 onMouseEnter={() => handleMouseEnter('product')}
@@ -109,7 +113,7 @@ export default function Navbar() {
           {/* Use Cases Trigger */}
           <div onMouseEnter={() => handleMouseEnter('use-cases')} onMouseLeave={handleMouseLeave}>
             <button className={`flex items-center gap-1 transition-colors py-5 focus:outline-none ${activeMenu === 'use-cases' ? 'text-[#09A372]' : 'hover:text-[#09A372]'}`}>
-              Use Cases {activeMenu === 'use-cases' ? <ChevronUp className="w-4 h-4 text-[#09A372]" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
+              Industries {activeMenu === 'use-cases' ? <ChevronUp className="w-4 h-4 text-[#09A372]" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
             </button>
             {activeMenu === 'use-cases' && (
               <UseCasesMenu 

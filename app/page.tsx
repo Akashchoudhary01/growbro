@@ -4,13 +4,14 @@ import ProductSection from '@/components/ProductSection';
 import Footer from '@/components/Footer';
 import ProductFeature from '@/components/ProductFeature';
 import FeaturesMarquee from '@/components/FeaturesMarquee';
-import CustomerReviews from '@/components/CustomerReviews';
+// import CustomerReviews from '@/components/CustomerReviews';
 import FinalCTA from '@/components/FinalCTA';
-import ComplianceSection from '@/components/ComplianceSection';
+// import ComplianceSection from '@/components/ComplianceSection';
 import CReview from '@/components/CReview';
-import IntegrationsSection from '@/components/IntegrationSection';
+// import IntegrationsSection from '@/components/IntegrationSection';
 import FAQSection from '@/components/FAQSection';
 import PartnersSection from '@/components/PartnerSection';
+// import AgentDemo from '@/components/AgentDemo';
 // import ClientsSection from '@/components/ClientSection';
 
 export default function Home() {

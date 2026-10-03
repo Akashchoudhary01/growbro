@@ -1,5 +1,6 @@
 import React from 'react';
 import { UploadCloud } from 'lucide-react';
+import Image from 'next/image';
 
 export default function TrainAiAgent() {
   return (
@@ -35,9 +36,21 @@ export default function TrainAiAgent() {
 
             {/* AI Status Badge */}
             <div className="mt-6 flex flex-col items-center space-y-1.5">
-              <div className="w-10 h-10 rounded-xl bg-[#10b981] flex items-center justify-center text-white font-bold text-xs shadow-md shadow-emerald-500/20">
-                AI
-              </div>
+            <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden">
+                 
+                 <Image
+                   src="/logooo.png"
+                   alt="Growbro Logo Icon"
+                   width={80}
+                   height={80}
+                   priority
+                   // Slightly smaller than the wrapper (w-7 h-7 = 28px) so it has nice padding inside the white circle
+                   className="h-18 w-18 object-contain" 
+                 />
+                 
+              
+               
+             </div>
               <span className="text-xs font-medium text-gray-500">
                 Learning your business...
               </span>

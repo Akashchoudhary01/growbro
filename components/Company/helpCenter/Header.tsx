@@ -2,7 +2,7 @@ export default function Header() {
   return (
     <div className="text-center">
       {/* Top Icon Badge */}
-      <div className="flex justify-center mb-6">
+      <div className="flex justify-center ">
         <div className="w-12 h-12 rounded-2xl bg-[#e1f7ec] border border-[#bbf3d6] flex items-center justify-center shadow-xs text-[#10b981]">
           <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="9" />
