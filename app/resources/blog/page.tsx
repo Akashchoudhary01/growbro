@@ -1,11 +1,11 @@
-src/app/resources/blog/page.tsx ---
 'use client';
-
 import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { Search, Calendar, Clock, User, ArrowRight, Tag, BookOpen } from 'lucide-react';
 // import { supabase } from '@/lib/supabase';
 import { supabase } from '@/app/lib/supabase';
+import Footer from '@/components/Footer';
+import Navbar from '@/components/Navbar';
 
 export interface BlogPost {
   id: string;
@@ -74,6 +74,8 @@ export default function BlogResourcesPage() {
   const gridBlogs = selectedCategory === 'All' && !searchQuery ? filteredBlogs.slice(1) : filteredBlogs;
 
   return (
+    <>
+    <Navbar/>
     <div className="min-h-screen bg-zinc-950 text-zinc-100 selection:bg-emerald-500 selection:text-white">
       {/* Background Glow Effect */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-b from-emerald-500/10 via-transparent to-transparent pointer-events-none blur-3xl" />
@@ -233,5 +235,8 @@ export default function BlogResourcesPage() {
         )}
       </main>
     </div>
+    <Footer/>
+    </>
+
   );
 }

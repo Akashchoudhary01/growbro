@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
+// import Navbar from '../Navbar';
+// import Footer from '../Footer';
 
 interface ResourcesMenuProps {
   onClose: () => void;
@@ -14,10 +16,15 @@ export default function ResourcesMenu({ onClose, onMouseEnter, onMouseLeave }: R
     { title: 'How It Works', desc: 'See the platform in action', href: '/resources/how-it-works' },
     { title: 'Testimonials', desc: 'Success stories from our clients', href: '/resources/testimonials' },
     { title: 'Blog', desc: 'Insights, guides, and updates', href: '/resources/blog' },
+    // { title: 'case-study', desc: 'case-study', href: '/resources/case-study' },
+    { title: 'use-case', desc: 'Insights, guides, and updates', href: '/resources/use-case' },
+    { title: 'tutorials', desc: 'Insights, guides, and updates', href: '/resources/tutorials' },
     { title: 'Integrations', desc: 'Explore technology integrations', href: '/resources/integrations' },
   ];
 
   return (
+  
+  
     <div 
       className="absolute top-full left-4 right-4 sm:left-6 sm:right-6 lg:left-8 lg:right-8 bg-white rounded-2xl border border-gray-200/80 shadow-2xl p-6 grid grid-cols-12 gap-6 z-50 animate-fadeIn text-left"
       onMouseEnter={onMouseEnter}

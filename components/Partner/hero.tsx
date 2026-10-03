@@ -19,7 +19,7 @@ export default function ChannelPartner() {
   ];
 
   return (
-    <section className="w-full bg-[#f9fdfb] py-16 px-6 md:px-12 lg:px-20 overflow-hidden">
+    <section className="w-full bg-[#f9fdfb] py-8 px-6 md:px-12 lg:px-20 overflow-hidden">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         {/* Left Column: Content & Stats */}
@@ -32,7 +32,7 @@ export default function ChannelPartner() {
           
           {/* Headline */}
           <h2 className="text-3xl md:text-5xl font-extrabold text-gray-950 tracking-tight leading-[1.15]">
-            Become a <span className="text-[#09a372] underline decoration-emerald-300 decoration-wavy decoration-2">GrowBro</span> <br />
+            Become a <span className="text-[#09a372]  decoration-emerald-300 decoration-2">GrowBro</span> <br />
             Channel Partner
           </h2>
           
@@ -149,7 +149,7 @@ export default function ChannelPartner() {
                   {chartData.map((bar, i) => (
                     <div key={i} className="flex flex-col items-center gap-2 flex-1">
                       <div 
-                        className={`w-full max-w-[20px] rounded-t-lg transition-all ${
+                        className={`w-full max-w-5 rounded-t-lg transition-all ${
                           bar.active ? 'bg-[#09a372]' : 'bg-[#a7f3d0] hover:bg-[#34d399]'
                         } ${bar.height}`}
                       ></div>
