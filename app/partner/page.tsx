@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer"
 import Navbar from "@/components/Navbar"
-import ChannelPartner from "@/components/Partner/hero"
+import PartnerHero from "@/components/Partner/hero"
+// import ChannelPartner from "@/components/Partner/hero"
 import HowItWorks from "@/components/Partner/HowItWorks"
 import PartnerCTA from "@/components/Partner/PartnerCTA"
 import PartnerEarningsStructure from "@/components/Partner/PartnerEarningsStructure"
@@ -13,7 +14,7 @@ function page() {
   return (
     <div>
         <Navbar/>
-        <ChannelPartner/>
+        <PartnerHero/>
         <PartnershipBenefits/>
         <PartnerEarningsStructure/>
         <HowItWorks/>
