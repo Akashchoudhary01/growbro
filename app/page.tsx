@@ -8,7 +8,7 @@ import FeaturesMarquee from '@/components/FeaturesMarquee';
 import FinalCTA from '@/components/FinalCTA';
 // import ComplianceSection from '@/components/ComplianceSection';
 import CReview from '@/components/CReview';
-// import IntegrationsSection from '@/components/IntegrationSection';
+import IntegrationsSection from '@/components/IntegrationSection';
 import FAQSection from '@/components/FAQSection';
 import PartnersSection from '@/components/PartnerSection';
 // import AgentDemo from '@/components/AgentDemo';
@@ -23,7 +23,7 @@ export default function Home() {
       <ProductFeature/>
       <FeaturesMarquee/>
       {/* <CustomerReviews/> */}
-      {/* <IntegrationsSection/> */}
+      <IntegrationsSection/>
       <CReview/>
       {/* <ComplianceSection/>
        */}

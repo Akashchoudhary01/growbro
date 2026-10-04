@@ -42,10 +42,6 @@ const FAQ_DATA: FaqItem[] = [
     answer: 'The main prices exclude 18% GST.',
   },
   {
-    question: 'Do you offer a startup or NGO discount?',
-    answer: 'Yes. Early-stage startups (< 1 year old) and registered NGOs qualify for 30% off any plan. Contact hello@growbro.ai with proof of registration.',
-  },
-  {
     question: 'What payment methods do you accept?',
     answer: 'Credit card, debit card, UPI, net banking, and NEFT. Annual plans can also be paid via cheque or bank transfer — contact us for details.',
   },

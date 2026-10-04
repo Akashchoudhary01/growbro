@@ -21,7 +21,7 @@ const PartnerHero = () => {
 
   return (
     <section
-      className="relative overflow-hidden  pb-10 px-4 sm:px-6 lg:px-8"
+      className="relative overflow-hidden   pb-10 px-4 sm:px-6 lg:px-8"
       style={{
         background: 'linear-gradient(160deg, #f0faf2 0%, #ffffff 50%, #f8fdf9 100%)',
       }}

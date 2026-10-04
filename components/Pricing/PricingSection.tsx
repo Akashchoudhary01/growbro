@@ -215,6 +215,11 @@ const PricingCard: React.FC<{
   const featureTextColor = isPro ? 'text-emerald-50' : isEnterprise ? 'text-gray-300' : 'text-gray-600';
   const descriptionColor = isPro ? 'text-emerald-100' : isEnterprise ? 'text-gray-400' : 'text-gray-500';
 
+  // Construct signup URL with plan and billing cycle as query params (Optional)
+  const signupUrl = tier.id === 'enterprise' 
+    ? 'mailto:sales@growbro.ai' // Or your sales link
+    : `https://crm.growbro.ai/signup?plan=${tier.id}&billing=${billingCycle}`;
+
   return (
     <div className={`rounded-3xl p-5 lg:p-7 flex flex-col relative transition-all duration-300 ${cardClasses}`}>
       
@@ -302,9 +307,10 @@ const PricingCard: React.FC<{
         ))}
       </ul>
 
-      {/* Button */}
-      <button
-        className={`w-full py-3 px-5 rounded-xl text-center font-bold transition-all duration-200 text-[13px] ${
+      {/* Action Button as Link */}
+      <a
+        href={signupUrl}
+        className={`w-full block py-3 px-5 rounded-xl text-center font-bold transition-all duration-200 text-[13px] ${
           isPro
             ? 'bg-white text-[#0f9d58] hover:bg-gray-50 shadow-md'
             : isEnterprise
@@ -313,7 +319,7 @@ const PricingCard: React.FC<{
         }`}
       >
         {tier.buttonText}
-      </button>
+      </a>
 
       {/* Footer Note */}
       {tier.note && (
